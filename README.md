@@ -1,6 +1,6 @@
-# Accessibility URL Auditor
+# Accessibility Auditor
 
-Accessibility URL Auditor is a Next.js web app that runs lightweight, deterministic accessibility checks against a public URL and returns an actionable pass/warn/fail report.
+Accessibility Auditor is a Next.js web app that runs lightweight, deterministic accessibility checks against a public URL and returns an actionable pass/warn/fail report.
 
 This project is intentionally **AI-assisted**. AI agents were used to accelerate delivery, improve iteration speed, and support rapid prototyping while keeping implementation decisions explicit and reviewable.
 
@@ -18,9 +18,11 @@ Most accessibility tools are either too shallow or too heavyweight for quick ear
 - URL audit flow with `idle`, `loading`, `success`, and `error` states
 - `POST /api/audit` backend endpoint with structured response output
 - 10 accessibility checks (language, title, viewport, alt text, form labels, button names, heading structure, link clarity, duplicate IDs)
+- Element-level actionable findings for fail/warn checks (problem-element selector + HTML snippet)
+- Capped findings with clear context (e.g., `Showing X of Y`) and copy actions for selectors/snippets
 - Summary scoring model (pass/warn/fail penalties)
 - Search/filter/sort over in-memory check results
-- Copy JSON output for sharing and debugging
+- Clickable audited URL and copy JSON output for sharing/debugging
 - Dev/demo simulator for quickly validating UI states
 
 ## Security and Reliability
@@ -69,7 +71,7 @@ npm test
 
 ## Project Status
 
-MVP is implemented and demo-ready. A planned post-MVP enhancement is adding element-level actionable findings (stable selectors + HTML snippets) for each issue.
+MVP is implemented and demo-ready, including element-level actionable findings for fail/warn results.
 
 ---
 
