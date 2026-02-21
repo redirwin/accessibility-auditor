@@ -86,10 +86,12 @@ describe("Home page flow", () => {
 
     render(<Home />)
     const user = userEvent.setup()
-    await user.type(screen.getByLabelText(/url to audit/i), "bad")
+    await user.type(screen.getByLabelText(/url to audit/i), "https://example.com")
     await user.click(screen.getByRole("button", { name: /^audit$/i }))
 
-    expect(await screen.findByText(/please enter a valid public http\/https url/i)).toBeInTheDocument()
+    expect(
+      await screen.findByText(/please enter a valid public http\/https url/i)
+    ).toBeInTheDocument()
   })
 
   it("resets back to idle", async () => {

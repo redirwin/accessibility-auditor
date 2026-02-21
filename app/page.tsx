@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { Suspense, useState, useMemo, useEffect } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { UrlAuditForm } from "@/components/url-audit-form"
 import {
@@ -69,7 +69,7 @@ function extractErrorMessage(payload: unknown): string {
 
 const SIMULATE_VALUES: AppState[] = ["idle", "loading", "success", "error"]
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const simulateParam = searchParams.get("simulate")
@@ -241,6 +241,14 @@ export default function Home() {
         </div>
       </footer>
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<LoadingSkeleton />}>
+      <HomeContent />
+    </Suspense>
   )
 }
 

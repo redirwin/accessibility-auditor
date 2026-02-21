@@ -6,6 +6,9 @@ describe("parseAndNormalizeUrl", () => {
     expect(parseAndNormalizeUrl(" HTTPS://EXAMPLE.COM/path ")).toBe(
       "https://example.com/path"
     )
+    expect(parseAndNormalizeUrl("https://example.com/")).toBe(
+      "https://example.com"
+    )
   })
 
   it("rejects empty or malformed URLs", () => {
