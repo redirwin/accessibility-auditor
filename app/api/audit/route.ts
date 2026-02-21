@@ -5,6 +5,8 @@ import { isBlockedTargetHost } from "@/src/audit/ssrf-guard"
 import { fetchHtml, FetchHtmlError } from "@/src/audit/fetch-html"
 import { runAudit } from "@/src/audit/run-audit"
 
+export const runtime = "nodejs"
+
 type ErrorCode =
   | "VALIDATION_ERROR"
   | "URL_BLOCKED"

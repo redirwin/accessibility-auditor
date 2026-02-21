@@ -1,3 +1,5 @@
+import { normalizeUrlForStorage } from "@/src/audit/url-normalization"
+
 export function parseAndNormalizeUrl(input: string): string {
   const trimmed = input.trim()
 
@@ -17,9 +19,6 @@ export function parseAndNormalizeUrl(input: string): string {
     throw new Error("Only http and https URLs are supported.")
   }
 
-  // Keep normalization deterministic while preserving user intent.
   parsed.protocol = protocol
-  parsed.hostname = parsed.hostname.toLowerCase()
-
-  return parsed.toString()
+  return normalizeUrlForStorage(parsed)
 }
