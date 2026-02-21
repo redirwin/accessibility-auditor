@@ -72,8 +72,10 @@ This PRD assumes the **SQLite Foundation PRD is already complete**, including:
 * `PRAGMA user_version = 1`
 * Shared URL normalization helper in place for consistent `url_normalized` values
 * Runtime-safe DB initialization on first DB access if init script is skipped
+* Node runtime usage for DB-backed route handlers (`runtime = "nodejs"`)
 
 The History feature must not perform schema creation during normal runtime beyond existing safety guards.
+Edge runtime is out of scope for History DB paths.
 
 ---
 
@@ -265,6 +267,7 @@ Prefill contract for this phase:
 * Re-run navigates with query param `/?url=<encoded original url>`
 * Main page reads the query param and pre-populates the URL input
 * Auto-run remains optional and disabled by default
+* Query-param handling should follow the same pattern already used by the main page for `simulate`
 
 ---
 
@@ -342,8 +345,8 @@ The feature is demo-ready when:
 
 For maximum presentation impact:
 
-1. Add insert helper in DB layer
-2. Wire persistence into `/api/audit`
+1. Wire existing `insertAuditSummary(...)` seam into successful `/api/audit` flow
+2. Add/expand DB query helper seam(s) for History reads (building on the current list-query pattern)
 3. Implement `/api/history`
 4. Create History page shell
 5. Add grouping logic
