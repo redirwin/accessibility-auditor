@@ -161,7 +161,7 @@ export default function Home() {
           </div>
           <div>
             <h1 className="text-lg font-semibold text-foreground text-balance">
-              Accessibility URL Auditor
+              Accessibility Auditor
             </h1>
             <p className="text-sm text-muted-foreground">
               Paste a URL to run a lightweight accessibility check.

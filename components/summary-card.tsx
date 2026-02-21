@@ -69,6 +69,20 @@ function ScoreRing({ score }: { score: number }) {
 export function SummaryCard({ data }: SummaryCardProps) {
   const [copied, setCopied] = useState(false)
 
+  const displayUrl = (() => {
+    try {
+      const parsed = new URL(data.url)
+      const isBasePath =
+        parsed.pathname === "/" &&
+        parsed.search.length === 0 &&
+        parsed.hash.length === 0
+
+      return isBasePath ? `${parsed.protocol}//${parsed.host}` : parsed.toString()
+    } catch {
+      return data.url
+    }
+  })()
+
   const handleCopyJson = async () => {
     await navigator.clipboard.writeText(JSON.stringify(data, null, 2))
     setCopied(true)
@@ -87,12 +101,16 @@ export function SummaryCard({ data }: SummaryCardProps) {
           <div className="flex items-start gap-5">
             <ScoreRing score={data.summary.score} />
             <div className="flex flex-col gap-2 pt-1">
-              <div className="flex items-center gap-2">
+              <a
+                href={data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-medium text-foreground break-all hover:underline"
+                aria-label={`Open audited URL: ${displayUrl}`}
+              >
                 <ExternalLink className="size-3.5 text-muted-foreground" />
-                <p className="text-sm font-medium text-foreground break-all">
-                  {data.url}
-                </p>
-              </div>
+                <span>{displayUrl}</span>
+              </a>
               <div className="flex flex-wrap items-center gap-2">
                 <Badge className="gap-1.5 bg-success text-success-foreground border-transparent">
                   <CheckCircle2 className="size-3" />

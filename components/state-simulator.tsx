@@ -12,7 +12,6 @@ interface StateSimulatorProps {
 }
 
 const states: { value: SimulatorState; label: string }[] = [
-  { value: "auto", label: "Auto" },
   { value: "idle", label: "Idle" },
   { value: "loading", label: "Loading" },
   { value: "success", label: "Success" },
@@ -36,7 +35,7 @@ export function StateSimulator({
             key={s.value}
             onClick={() => onStateChange(s.value)}
             className={cn(
-              "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
+              "cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
               state === s.value
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"

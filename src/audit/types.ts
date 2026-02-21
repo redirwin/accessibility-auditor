@@ -1,5 +1,10 @@
 export type AuditStatus = "pass" | "warn" | "fail"
 
+export type FindingExample = {
+  selector: string
+  snippet: string
+}
+
 export type AuditCheck = {
   id: string
   title: string
@@ -8,7 +13,8 @@ export type AuditCheck = {
   count?: number
   details?: {
     summary?: string
-    examples?: string[]
+    examples?: FindingExample[]
+    exampleCount?: number
   }
 }
 

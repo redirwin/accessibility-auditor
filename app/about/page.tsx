@@ -32,7 +32,7 @@ export default function AboutPage() {
           </div>
           <div>
             <h1 className="text-lg font-semibold text-foreground">
-              Accessibility URL Auditor
+              Accessibility Auditor
             </h1>
             <p className="text-sm text-muted-foreground">About</p>
           </div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
               About this tool
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              The Accessibility URL Auditor runs a lightweight set of checks on a
+              The Accessibility Auditor runs a lightweight set of checks on a
               single page. Enter a public URL to fetch the HTML and receive a
               score plus pass/warn/fail results for document language, page
               title, viewport, images, form controls, headings, links, and
