@@ -29,7 +29,7 @@ export function StateSimulator({
       "flex items-center gap-2 rounded-lg border border-dashed border-border bg-muted/50 px-3 py-2",
       className
     )}>
-      <span className="text-xs font-medium text-muted-foreground">Simulate (dev only):</span>
+      <span className="text-xs font-medium text-muted-foreground">Simulate:</span>
       <div className="flex gap-1">
         {states.map((s) => (
           <button

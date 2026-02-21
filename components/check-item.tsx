@@ -33,7 +33,7 @@ const statusConfig = {
   },
   fail: {
     icon: XCircle,
-    className: "bg-destructive text-destructive-foreground border-transparent",
+    className: "bg-destructive text-white border-transparent",
     label: "Fail",
   },
 } as const

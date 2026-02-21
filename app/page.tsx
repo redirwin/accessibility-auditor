@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { UrlAuditForm } from "@/components/url-audit-form"
 import {
   StateSimulator,
@@ -13,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { MOCK_RESPONSE } from "@/lib/mock-data"
 import type { AuditResponse } from "@/src/audit/types"
+import Link from "next/link"
 import {
   ScanEye,
   AlertCircle,
@@ -65,17 +67,37 @@ function extractErrorMessage(payload: unknown): string {
   return DEFAULT_ERROR_MESSAGE
 }
 
+const SIMULATE_VALUES: AppState[] = ["idle", "loading", "success", "error"]
+
 export default function Home() {
-  const [appState, setAppState] = useState<AppState>("idle")
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const simulateParam = searchParams.get("simulate")
+  const urlSimulate = useMemo(
+    () =>
+      SIMULATE_VALUES.includes(simulateParam as AppState)
+        ? (simulateParam as AppState)
+        : null,
+    [simulateParam]
+  )
   const [simulatorState, setSimulatorState] = useState<SimulatorState>("auto")
+
+  const [appState, setAppState] = useState<AppState>("idle")
   const [url, setUrl] = useState("")
   const [errorDismissed, setErrorDismissed] = useState(false)
   const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR_MESSAGE)
   const [auditResult, setAuditResult] = useState<AuditResponse | null>(null)
-  const displayState: AppState =
-    simulatorState === "auto" ? appState : simulatorState
+  const displayState: AppState = urlSimulate ?? appState
+
+  useEffect(() => {
+    setSimulatorState(urlSimulate ?? "auto")
+  }, [urlSimulate])
 
   const handleAudit = async () => {
+    if (urlSimulate) {
+      setSimulatorState("auto")
+      router.replace("/")
+    }
     setAppState("loading")
     setErrorDismissed(false)
     setErrorMessage(DEFAULT_ERROR_MESSAGE)
@@ -122,20 +144,11 @@ export default function Home() {
 
   const handleStateChange = (state: SimulatorState) => {
     setSimulatorState(state)
-    setErrorDismissed(false)
     if (state === "auto") {
+      router.push("/")
       return
     }
-    if (state === "error") {
-      setErrorMessage(DEFAULT_ERROR_MESSAGE)
-      setAuditResult(null)
-    }
-    if (state === "success" && !url.trim()) {
-      setUrl("https://example.com")
-    }
-    if (state === "success" && !auditResult) {
-      setAuditResult({ ...MOCK_RESPONSE, url: url || MOCK_RESPONSE.url })
-    }
+    router.push(`/?simulate=${state}`)
   }
 
   return (
@@ -194,7 +207,11 @@ export default function Home() {
 
           {/* Success State */}
           {displayState === "success" && (
-            <ResultsPanel data={auditResult ?? { ...MOCK_RESPONSE, url: url || MOCK_RESPONSE.url }} />
+            <ResultsPanel
+              data={
+                auditResult ?? { ...MOCK_RESPONSE, url: url || MOCK_RESPONSE.url }
+              }
+            />
           )}
 
           {/* Idle State */}
@@ -204,14 +221,23 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t">
-        <div className="mx-auto flex max-w-4xl items-center justify-end px-4 py-4 sm:px-6">
-          <div className="flex">
+        <div className="mx-auto grid max-w-4xl grid-cols-3 items-center gap-3 px-4 py-4 sm:px-6">
+          <p className="justify-self-start text-xs text-muted-foreground">
+            Created by David Irwin using AI agents
+          </p>
+          <div className="justify-self-center">
             <StateSimulator
               state={simulatorState}
               onStateChange={handleStateChange}
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
+          <Link
+            href="/about"
+            className="justify-self-end text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            About
+          </Link>
         </div>
       </footer>
     </div>
