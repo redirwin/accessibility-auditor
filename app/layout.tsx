@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Accessibility URL Auditor',
+  title: 'Accessibility Auditor',
   description: 'Paste a URL to run a lightweight accessibility check. Demo UI with simulated results.',
   icons: {
     icon: [

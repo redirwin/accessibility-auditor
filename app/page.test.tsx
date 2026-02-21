@@ -3,6 +3,17 @@ import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import Home from "@/app/page"
 
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    replace: vi.fn(),
+    push: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+  useSearchParams: () => ({
+    get: () => null,
+  }),
+}))
+
 function successPayload() {
   return {
     url: "https://example.com",
@@ -100,5 +111,26 @@ describe("Home page flow", () => {
 
     await user.click(screen.getByRole("button", { name: /^reset$/i }))
     expect(await screen.findByText(/enter a url to run an audit/i)).toBeInTheDocument()
+  })
+
+  it("submits audit when pressing Enter in URL field", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify(successPayload()), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      })
+    )
+    vi.stubGlobal("fetch", fetchMock)
+
+    render(<Home />)
+    const user = userEvent.setup()
+
+    const urlInput = screen.getByLabelText(/url to audit/i)
+    await user.type(urlInput, "https://example.com{enter}")
+
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledTimes(1)
+    })
+    expect(await screen.findByText("Checks")).toBeInTheDocument()
   })
 })

@@ -17,7 +17,7 @@ export const MOCK_RESPONSE: AuditResponse = {
       details: {
         summary:
           "A lang attribute on the <html> element helps screen readers pick the correct pronunciation rules.",
-        examples: ['<html lang="en"> detected.'],
+        examples: [{ selector: "html", snippet: '<html lang="en">' }],
       },
     },
     {
@@ -28,7 +28,7 @@ export const MOCK_RESPONSE: AuditResponse = {
       details: {
         summary:
           "A descriptive title helps users understand the page purpose and is announced by screen readers on navigation.",
-        examples: ["<title>Example Domain</title>"],
+        examples: [{ selector: "title", snippet: "<title>Example Domain</title>" }],
       },
     },
     {
@@ -40,7 +40,11 @@ export const MOCK_RESPONSE: AuditResponse = {
         summary:
           "The viewport meta tag ensures the page scales correctly on mobile devices.",
         examples: [
-          '<meta name="viewport" content="width=device-width, initial-scale=1">',
+          {
+            selector: "meta[name=viewport]",
+            snippet:
+              '<meta name="viewport" content="width=device-width, initial-scale=1">',
+          },
         ],
       },
     },
@@ -54,10 +58,14 @@ export const MOCK_RESPONSE: AuditResponse = {
         summary:
           "Images without alt text are invisible to screen readers. Every informative image should describe its content.",
         examples: [
-          '<img src="/hero.jpg"> (line 42)',
-          '<img src="/team-photo.png"> (line 108)',
-          '<img src="/icon-download.svg"> (line 215)',
+          { selector: "img.hero-image", snippet: '<img src="/hero.jpg">' },
+          { selector: "img.team-photo", snippet: '<img src="/team-photo.png">' },
+          {
+            selector: "img.icon-download",
+            snippet: '<img src="/icon-download.svg">',
+          },
         ],
+        exampleCount: 3,
       },
     },
     {
@@ -70,9 +78,16 @@ export const MOCK_RESPONSE: AuditResponse = {
         summary:
           "Form controls without labels make it difficult for assistive technology users to understand the input purpose.",
         examples: [
-          '<input type="text" id="search"> (line 55) \u2014 no associated <label>',
-          '<input type="email" placeholder="Email"> (line 89) \u2014 placeholder is not a substitute for a label',
+          {
+            selector: "#search",
+            snippet: '<input type="text" id="search">',
+          },
+          {
+            selector: "input[type=email]",
+            snippet: '<input type="email" placeholder="Email">',
+          },
         ],
+        exampleCount: 2,
       },
     },
     {
@@ -85,8 +100,12 @@ export const MOCK_RESPONSE: AuditResponse = {
         summary:
           "Buttons without text or aria-label are unreadable by assistive technology. Ensure every button has visible text or an aria-label.",
         examples: [
-          '<button class="icon-btn"><svg>...</svg></button> (line 132) \u2014 no text or aria-label',
+          {
+            selector: "button.icon-btn",
+            snippet: '<button class="icon-btn"><svg>...</svg></button>',
+          },
         ],
+        exampleCount: 1,
       },
     },
     {
@@ -97,7 +116,7 @@ export const MOCK_RESPONSE: AuditResponse = {
       details: {
         summary:
           "A single H1 per page helps users and search engines understand the main topic of the page.",
-        examples: ["<h1>Example Domain</h1>"],
+        examples: [{ selector: "h1", snippet: "<h1>Example Domain</h1>" }],
       },
     },
     {
@@ -109,7 +128,10 @@ export const MOCK_RESPONSE: AuditResponse = {
         summary:
           "Maintaining proper heading order ensures content structure is understandable when navigating by headings.",
         examples: [
-          "h1 \u2192 h2 \u2192 h3 \u2014 no skipped levels detected.",
+          {
+            selector: "h1 + h2 + h3",
+            snippet: "h1 -> h2 -> h3 (no skipped levels detected)",
+          },
         ],
       },
     },
@@ -123,11 +145,15 @@ export const MOCK_RESPONSE: AuditResponse = {
         summary:
           "Links with generic text provide no context when read out of context. Use descriptive link text that indicates the destination.",
         examples: [
-          '"Click here" (line 78)',
-          '"Read more" (line 145)',
-          '"Read more" (line 198)',
-          '"Click here to learn more" (line 261)',
+          { selector: "a.cta-link", snippet: '<a href="/docs">Click here</a>' },
+          { selector: "a.read-more", snippet: '<a href="/blog/post-1">Read more</a>' },
+          { selector: "a.read-more", snippet: '<a href="/blog/post-2">Read more</a>' },
+          {
+            selector: "a.learn-link",
+            snippet: '<a href="/learn">Click here to learn more</a>',
+          },
         ],
+        exampleCount: 4,
       },
     },
     {
@@ -138,7 +164,7 @@ export const MOCK_RESPONSE: AuditResponse = {
       details: {
         summary:
           "Duplicate IDs can cause issues with label associations, fragment links, and ARIA references.",
-        examples: ["All id attributes are unique."],
+        examples: [],
       },
     },
   ],

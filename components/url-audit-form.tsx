@@ -21,7 +21,14 @@ export function UrlAuditForm({
   isLoading,
 }: UrlAuditFormProps) {
   return (
-    <div className="flex flex-col gap-3">
+    <form
+      className="flex flex-col gap-3"
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (!url.trim() || isLoading) return
+        onAudit()
+      }}
+    >
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="url-input" className="text-sm font-medium text-foreground">
           URL to audit
@@ -38,7 +45,7 @@ export function UrlAuditForm({
           />
           <div className="flex gap-2">
             <Button
-              onClick={onAudit}
+              type="submit"
               disabled={!url.trim() || isLoading}
               className="gap-2"
             >
@@ -51,6 +58,7 @@ export function UrlAuditForm({
             </Button>
             <Button
               variant="outline"
+              type="button"
               onClick={onReset}
               disabled={isLoading}
               className="gap-2"
@@ -74,6 +82,6 @@ export function UrlAuditForm({
           </button>
         </div>
       </div>
-    </div>
+    </form>
   )
 }
