@@ -1,9 +1,9 @@
 ---
-name: audit-completed-tasks
-description: Audit previously completed implementation work or actions against the referenced PRD/plan and current repo state. Use when the user asks to "audit" work already done, validate section completion, or verify correctness/completeness after implementation.
+name: validate-completed-tasks
+description: Validate previously completed implementation work or actions against the referenced PRD/plan and current repo state. Use when the user asks to "validate" work already done, verify section completion, or check correctness/completeness after implementation.
 ---
 
-# Audit Completed Tasks
+# Validate Completed Tasks
 
 ## Purpose
 
@@ -13,7 +13,7 @@ Evaluate implementation work that has already been performed and report whether 
 
 Use this skill when:
 
-- The user asks to `audit` completed work
+- The user asks to `validate` completed work
 - The user asks whether previously completed sections are correct/complete
 - The user asks for a post-implementation validation pass
 
@@ -21,20 +21,20 @@ Use this skill when:
 
 Before starting:
 
-1. Identify the audit scope:
+1. Identify the validation scope:
    - "Since my last prompt"
    - Specific plan section(s)
    - Specific files or feature area
 2. Identify the source-of-truth docs:
    - Relevant PRD in `.agents/prds`
    - Relevant plan in `.agents/plans`
-3. Confirm audit mode:
+3. Confirm validation mode:
    - Default: analysis/report only (no code changes)
    - If fixes are desired, require explicit user instruction after findings
 
 If scope is ambiguous, ask one focused clarification and pause.
 
-## Audit Method (Strict)
+## Validation Method (Strict)
 
 1. **Reconstruct intent**
    - Read the governing PRD/plan requirements and acceptance criteria.
@@ -68,12 +68,12 @@ Always return:
 
 If no issues are found, explicitly state:
 
-- "No material findings in audited scope."
+- "No material findings in validated scope."
 - Residual risk/testing gaps, if any.
 
 ## Guardrails
 
-- Do not make code edits during audit unless explicitly requested after findings.
+- Do not make code edits during validation unless explicitly requested after findings.
 - Do not expand scope beyond requested sections/files.
 - Do not mark work "complete" without evidence.
 - Prefer concrete verification over assumptions.
