@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Presentation, PanelRightClose, PanelRightOpen } from "lucide-react";
 import thisNotThatImage from "./this-not-that.png";
 
-const TOTAL_SLIDES = 15;
+const TOTAL_SLIDES = 16;
 const SLIDE_BASE_WIDTH = 1100;
 const SLIDE_BASE_HEIGHT = 640;
 const SLIDES_INDEX_KEY = "auditor-slides-index";
@@ -25,7 +25,8 @@ const SLIDE_TITLES: Record<number, string> = {
   12: "Core Workflow",
   13: "Live Demo · Create the Plan",
   14: "Live Demo · Implement the Plan",
-  15: "Wrap Up",
+  15: "Adoption Risks & Mitigations",
+  16: "Wrap Up",
 };
 
 function clamp(n: number, min: number, max: number) {
@@ -231,6 +232,26 @@ const SLIDE_NOTES: Record<number, SlideNotes> = {
     ],
   },
   15: {
+    section: "Adoption Risks & Mitigations",
+    lines: [
+      "## Adoption Risks & Mitigations",
+      "Risk: Process theater (checklists complete, outcomes weak).",
+      "Mitigation: Define done as behavior + acceptance criteria + test evidence.",
+      "Risk: Weak PRD drives wrong scope quickly.",
+      "Mitigation: Run a short PRD challenge pass before planning.",
+      "Risk: Passing tests hides product gaps.",
+      "Mitigation: Use risk-tiered validation, including selective manual checks.",
+      "Risk: False confidence from deterministic workflow (outputs look authoritative, model variance remains).",
+      "Mitigation: Treat plans as hypotheses; require edge-case review and human challenge before execution.",
+      "Risk: Section-by-section execution misses cross-cutting dependencies.",
+      "Mitigation: Add explicit dependency checks between sections.",
+      "Risk: Maintenance overhead (skills/docs become their own system; stale instructions become hidden failures).",
+      "Mitigation: Version and review skills/docs on a cadence; add consistency checks to change workflow.",
+      "Risk: Velocity dip from heavy process (small fixes become slower; teams bypass workflow).",
+      "Mitigation: Keep a lightweight lane for low-risk changes with strict entry/exit criteria.",
+    ],
+  },
+  16: {
     section: "Wrap Up",
     lines: [
       "## Wrap Up",
@@ -506,7 +527,7 @@ export default function SlidesPage() {
               Chaos &lt; Control
             </h1>
             <p>
-              How to make Copilot predictable in real projects with guardrails,
+              How to make Copilot more predictable and reliable in real projects with guardrails,
               reusable workflows, and disciplined review.
             </p>
             <div className="slides-pill-row" aria-label="Topics">
@@ -522,8 +543,8 @@ export default function SlidesPage() {
             className={`slides-slide ${index === 1 ? "is-active" : index === 0 ? "is-prev" : ""}`}
             data-title="Intro: First AI Experience"
           >
-            <div className="slides-eyebrow">Intro: First AI Experience</div>
-            <h2>My First AI Experiences</h2>
+            <div className="slides-eyebrow">ChatGPT</div>
+            <h2>First Encounter with AI</h2>
             <ul>
               <li>
                 <strong>Dad jokes:</strong> confidently terrible — no taste, no
@@ -598,9 +619,9 @@ export default function SlidesPage() {
             data-title="Live Demo · Ask Mode"
           >
             <div className="slides-eyebrow">Live Demo · Ask Mode</div>
-            <h2>Open Project + Ask Mode</h2>
+            <h2>Github Copilot in Ask Mode</h2>
             <p>
-              Exploring what Copilot can — and can&rsquo;t — do in Ask mode.
+              What Copilot can and can&rsquo;t do in Ask mode.
             </p>
             <div className="slides-stack" role="list" aria-label="Prompts">
               <div className="slides-stack-item layer-prompt" role="listitem">
@@ -720,7 +741,7 @@ export default function SlidesPage() {
                 <div className="n">C</div>
                 <div className="t">Add shortcuts</div>
                 <div className="d">
-                  Agent adds write-tests + run-tests to AGENTS.md
+                  Prompt agent to update it's own AGENTS.md
                 </div>
               </div>
               <div className="slides-step">
@@ -896,9 +917,79 @@ export default function SlidesPage() {
             </div>
           </section>
 
-          {/* Slide 15 — Wrap Up */}
+          {/* Slide 15 — Adoption Risks & Mitigations */}
           <section
             className={`slides-slide ${index === 14 ? "is-active" : index === 13 ? "is-prev" : ""}`}
+            data-title="Adoption Risks & Mitigations"
+          >
+            <div className="slides-eyebrow">Adoption Risks & Mitigations</div>
+            <h2>Keep the Workflow Honest</h2>
+            <div className="slides-card" style={{ marginTop: 12 }}>
+              <div className="slides-risk-grid" role="table" aria-label="Risks and mitigations">
+                <div className="slides-risk-head">Risks</div>
+                <div className="slides-risk-head">Mitigations</div>
+
+                <div className="slides-risk-cell">
+                  Process theater (checklists complete, outcomes weak)
+                </div>
+                <div className="slides-risk-cell">
+                  Define done as behavior + acceptance criteria + test evidence
+                </div>
+
+                <div className="slides-risk-cell">
+                  Weak PRD drives wrong scope and quickly creates troublesome spec lock-in
+                </div>
+                <div className="slides-risk-cell">
+                  Seek team input and full scope alignment before, during, and after planning; conduct a point by point  PRD review
+                </div>
+
+                <div className="slides-risk-cell">
+                  Passing tests can hide product gaps
+                </div>
+                <div className="slides-risk-cell">
+                  Use risk-tiered validation, including selective manual checks
+                </div>
+
+                <div className="slides-risk-cell">
+                  False confidence from deterministic workflow (outputs look
+                  authoritative, model variance remains)
+                </div>
+                <div className="slides-risk-cell">
+                  Treat plans as hypotheses; require edge-case review and human
+                  challenge before execution
+                </div>
+
+                <div className="slides-risk-cell">
+                  Section-by-section execution misses cross-cutting dependencies
+                </div>
+                <div className="slides-risk-cell">
+                  Add explicit dependency checks between sections
+                </div>
+
+                <div className="slides-risk-cell">
+                  Maintenance overhead (skills/docs become their own system;
+                  stale instructions become hidden failures)
+                </div>
+                <div className="slides-risk-cell">
+                  Version and review skills/docs on a cadence; add consistency
+                  checks to change workflow
+                </div>
+
+                <div className="slides-risk-cell">
+                  Velocity dip from heavy process (small fixes become slower;
+                  teams bypass workflow)
+                </div>
+                <div className="slides-risk-cell">
+                  Keep a lightweight lane for low-risk changes with strict
+                  entry/exit criteria
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Slide 16 — Wrap Up */}
+          <section
+            className={`slides-slide ${index === 15 ? "is-active" : index === 14 ? "is-prev" : ""}`}
             data-title="Wrap Up"
           >
             <div className="slides-eyebrow">Wrap Up</div>
