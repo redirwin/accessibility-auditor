@@ -9,7 +9,7 @@
 
 # 1. Context
 
-The application already has a polished UI built with Vercel v0 that includes:
+The application already has a polished UI built with [Vercel v0](https://v0.dev) that includes:
 
 * URL input with Audit / Reset / Try sample URL
 * Visual states for Idle, Loading, Success, and Error
