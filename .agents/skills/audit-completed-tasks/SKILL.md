@@ -1,9 +1,9 @@
 ---
-name: audit-work
+name: audit-completed-tasks
 description: Audit previously completed implementation work or actions against the referenced PRD/plan and current repo state. Use when the user asks to "audit" work already done, validate section completion, or verify correctness/completeness after implementation.
 ---
 
-# Audit Work
+# Audit Completed Tasks
 
 ## Purpose
 
