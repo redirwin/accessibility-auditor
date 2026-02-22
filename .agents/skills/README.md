@@ -8,6 +8,16 @@ This folder contains project-specific Agent Skills, following the open Agent Ski
 
 An Agent Skill is a folder with a required `SKILL.md` file (YAML frontmatter + Markdown instructions). Skills can also include optional support folders like `scripts/`, `references/`, and `assets/`.
 
+## Example Skill Folder Structure
+
+```
+my-skill/
+├── SKILL.md          # Required: instructions + metadata
+├── scripts/          # Optional: executable code
+├── references/       # Optional: documentation
+└── assets/           # Optional: templates, resources
+```
+
 ## Required `SKILL.md` frontmatter
 
 - `name` (required)
