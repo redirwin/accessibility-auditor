@@ -163,6 +163,12 @@ function HomeContent() {
               Paste a URL to run a lightweight accessibility check.
             </p>
           </div>
+          <Link
+            href="/about"
+            className="ml-auto text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            About
+          </Link>
         </div>
       </header>
 
@@ -226,23 +232,17 @@ function HomeContent() {
 
       {/* Footer */}
       <footer className="border-t">
-        <div className="mx-auto grid max-w-4xl grid-cols-3 items-center gap-3 px-4 py-4 sm:px-6">
+        <div className="mx-auto grid max-w-4xl grid-cols-2 items-center gap-3 px-4 py-4 sm:px-6">
           <p className="justify-self-start text-xs text-muted-foreground">
             Created by David Irwin using AI agents
           </p>
-          <div className="justify-self-center">
+          <div className="justify-self-end">
             <StateSimulator
               state={simulatorState}
               onStateChange={handleStateChange}
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
-          <Link
-            href="/about"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground justify-self-end"
-          >
-            About
-          </Link>
         </div>
       </footer>
     </div>

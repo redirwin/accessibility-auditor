@@ -36,6 +36,12 @@ export default function AboutPage() {
             </h1>
             <p className="text-sm text-muted-foreground">About</p>
           </div>
+          <Link
+            href="/"
+            className="ml-auto text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Home
+          </Link>
         </div>
       </header>
 
@@ -75,23 +81,17 @@ export default function AboutPage() {
       </main>
 
       <footer className="border-t">
-        <div className="mx-auto grid max-w-4xl grid-cols-3 items-center gap-3 px-4 py-4 sm:px-6">
+        <div className="mx-auto grid max-w-4xl grid-cols-2 items-center gap-3 px-4 py-4 sm:px-6">
           <p className="justify-self-start text-xs text-muted-foreground">
             Created by David Irwin using AI agents
           </p>
-          <div className="justify-self-center">
+          <div className="justify-self-end">
             <StateSimulator
               state={simulatorState}
               onStateChange={handleSimulatorChange}
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
-          <Link
-            href="/"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground justify-self-end"
-          >
-            Home
-          </Link>
         </div>
       </footer>
     </div>

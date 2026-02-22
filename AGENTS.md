@@ -16,8 +16,6 @@ Use these **standalone** prompt short cuts anywhere in a prompt (before, after, 
 - **plan from prd** — "Use the [plan-from-prd](.agents/skills/plan-from-prd/SKILL.md) skill to generate a comprehensive **step-by-step implementation plan** from the attached PRD. Save the plan in [.agents/plans](.agents/plans) with clear sections and **unchecked task boxes**; take no other actions."
 - **implement plan** — "Use the [implement-plan](.agents/skills/implement-plan/SKILL.md) skill to execute the referenced plan section(s), update checklist progress and section notes, and follow single/batch section rules."
 - **validate** — "Use the [validate-completed-tasks](.agents/skills/validate-completed-tasks/SKILL.md) skill to validate actions already taken and verify correctness/completeness against the PRD and/or plan."
-- **write tests** — "Use the [write-tests](.agents/skills/write-tests/SKILL.md) skill to create comprehensive test coverage following project conventions, including unit tests for functions/utilities, integration tests for APIs/database, and component tests for React UI."
-- **run tests** — "Use the [run-tests](.agents/skills/run-tests/SKILL.md) skill to execute the test suite, report pass/fail status, analyze failures with actionable fix suggestions, and assess overall test health and coverage."
 
 ---
 
@@ -47,3 +45,4 @@ Skills are reusable workflow guides stored in [.agents/skills](.agents/skills). 
 - [validate-completed-tasks](.agents/skills/validate-completed-tasks/SKILL.md) — Use this skill when the user asks to validate work that has already been done (for example `validate`, "verify completed sections", or "check if this implementation is correct and complete"). This skill performs a findings-first validation against the relevant PRD/plan and current repo state, defaults to analysis-only (no code changes), and reports severity-ordered issues, pass/fail scope summary, and minimal next-step remediation guidance.
 - [write-tests](.agents/skills/write-tests/SKILL.md) — Use this skill when the user asks to write tests, add test coverage, or test specific code (for example "write tests for this component", "add test coverage", or "test the validation logic"). This skill creates comprehensive test coverage following project conventions, including unit tests for functions/utilities, integration tests for APIs/database, and component tests for React UI.
 - [run-tests](.agents/skills/run-tests/SKILL.md) — Use this skill when the user asks to run tests, check if tests pass, or validate test coverage (for example "run tests", "do the tests pass?", or "check test results"). This skill executes the test suite, reports pass/fail status, analyzes failures with actionable fix suggestions, and assesses overall test health and coverage.
+

@@ -1,6 +1,6 @@
----
-name: plan-from-prd
+## name: plan-from-prd
 description: Generate a strict implementation plan from a provided PRD. Use when the user asks to create a plan from a PRD, mentions both PRD and implementation plan, or uses the shortcode "plan from prd".
+
 ---
 
 # PRD to Plan
@@ -62,3 +62,4 @@ Use the template structure defined in [references/plan-template.md](references/p
 - Use consistent terminology from the PRD.
 - Prefer concrete tasks over vague wording.
 - Keep section order implementation-realistic.
+
