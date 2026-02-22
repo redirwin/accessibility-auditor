@@ -15,7 +15,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { MOCK_RESPONSE } from "@/lib/mock-data";
 import type { AuditResponse } from "@/src/audit/types";
 import Link from "next/link";
-import { ScanEye, AlertCircle, X, Loader2, Globe } from "lucide-react";
+import { ScanEye, AlertCircle, X, Loader2, Globe, Presentation } from "lucide-react";
 
 type ApiErrorCode =
   | "VALIDATION_ERROR"
@@ -166,6 +166,14 @@ function HomeContent() {
         </div>
       </header>
 
+      <Link
+        href="/slides"
+        className="fixed bottom-4 right-4 z-50 text-muted-foreground transition-colors hover:text-foreground"
+        aria-label="Slides"
+      >
+        <Presentation className="size-5" aria-hidden />
+      </Link>
+
       {/* Main Content */}
       <main className="flex-1">
         <div className="mx-auto flex max-w-4xl flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8">
@@ -229,20 +237,12 @@ function HomeContent() {
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
-          <div className="flex justify-end gap-4 justify-self-end">
-            <Link
-              href="/slides"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Slides
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              About
-            </Link>
-          </div>
+          <Link
+            href="/about"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground justify-self-end"
+          >
+            About
+          </Link>
         </div>
       </footer>
     </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ScanEye, ArrowLeft } from "lucide-react"
+import { ScanEye, ArrowLeft, Presentation } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   StateSimulator,
@@ -38,6 +38,14 @@ export default function AboutPage() {
           </div>
         </div>
       </header>
+
+      <Link
+        href="/slides"
+        className="fixed bottom-4 right-4 z-50 text-muted-foreground transition-colors hover:text-foreground"
+        aria-label="Slides"
+      >
+        <Presentation className="size-5" aria-hidden />
+      </Link>
 
       <main className="flex-1">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
@@ -78,20 +86,12 @@ export default function AboutPage() {
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
-          <div className="flex justify-end gap-4 justify-self-end">
-            <Link
-              href="/slides"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Slides
-            </Link>
-            <Link
-              href="/"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Home
-            </Link>
-          </div>
+          <Link
+            href="/"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground justify-self-end"
+          >
+            Home
+          </Link>
         </div>
       </footer>
     </div>

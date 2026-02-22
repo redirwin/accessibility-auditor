@@ -1,7 +1,7 @@
 import "./slides.css";
 
 export const metadata = {
-  title: "AI Coding Agents: From Chaos to Control",
+  title: "AI Coding Agents: Chaos < Control",
   description:
     "A clean HTML/CSS slide deck with simple navigation and transitions. Demo only.",
 };
