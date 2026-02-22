@@ -1,5 +1,5 @@
 ## name: plan-from-prd
-description: Generate a strict implementation plan from a provided PRD. Use when the user asks to create a plan from a PRD, mentions both PRD and implementation plan, or uses the shortcode "plan from prd".
+description: Generate a strict plan from a provided PRD. Use when the user asks to create a plan from a PRD, mentions both PRD and plan, or uses the shortcode "plan from prd".
 
 ---
 
@@ -7,7 +7,7 @@ description: Generate a strict implementation plan from a provided PRD. Use when
 
 ## Purpose
 
-Transform an attached PRD into a complete, step-by-step implementation plan with ordered sections and unchecked task boxes.
+Transform an attached PRD into a complete, step-by-step plan with ordered sections and unchecked task boxes.
 
 ## When To Use
 
@@ -15,7 +15,7 @@ Use this skill when:
 
 - The user says `plan from prd`
 - The user asks to generate/create a plan from a PRD
-- The prompt includes both concepts: PRD + implementation plan
+- The prompt includes both concepts: PRD + plan
 
 ## Required Inputs
 
@@ -32,7 +32,7 @@ If the PRD is missing, ask for the PRD path and stop.
 For a plan-generation request, do only the following:
 
 1. Read the PRD.
-2. Create one Markdown implementation plan file in `.agents/plans` (unless overridden).
+2. Create one Markdown plan file in `.agents/plans` (unless overridden).
 3. Populate all plan sections with unchecked checklists.
 
 Do not:
@@ -43,14 +43,14 @@ Do not:
 
 ## Filename Convention
 
-Use kebab-case:
+Use kebab-case and derive from the PRD filename/topic:
 
-`<feature-topic>-implementation-plan.md`
+`<feature-topic>-feature-plan.md`
 
 Examples:
 
-- `audit-history-implementation-plan.md`
-- `database-implementation-plan.md`
+- `audit-history-feature-plan.md`
+- `database-feature-plan.md`
 
 ## Plan Template
 

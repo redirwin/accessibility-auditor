@@ -89,20 +89,20 @@
 2. Use short cut `plan-to-prd` and attach `audit-history-prd.md`
 3. Start the Plan Creation process
 4. Return to Audit History PRD to show it more in depth
-5. Show the new `audit-history-implementation-plan.md` document
+5. Show the new `audit-history-feature-plan.md` document
 
-# Implement Plan
+# Execute Plan
 
-1. Use short cut `implement plan` and attach `audit-history-implementation-plan.md`
+1. Use short cut `execute plan` and attach `audit-history-feature-plan.md`
 2. Follow the prompts provided by the chat.
-3. While the agent is implementing the plan, go back the and **NOW go back** to `audit-history-prd.md` and **give a deeper tour** of what the PRD looks like. 
+3. While the agent is executing the plan, go back the and **NOW go back** to `audit-history-prd.md` and **give a deeper tour** of what the PRD looks like. 
 4. Return to the chat when first round of plan steps is completed
 5. Switch VS Code to **Source Control to view the file Diffs**
 6. Prompt the agent to continue to next plan section or batch of sections
 
 ## Write Tests and Run Tests
 
-- Implement Plan will likely have created and run some new tests during implementation
+- Execute Plan will likely have created and run some new tests during execution
 - Prompt the agent to describe the new tests
 - If there is time, use `write-tests` and `run-tests` to identify, create, and run a couple of new tests
 
@@ -124,6 +124,6 @@ If you want to experiment safely:
 
 4. Create 2–3 reusable prompt short cuts
 
-5. Try the PRD → plan → implement workflow on a small feature
+5. Try the PRD → plan → execute workflow on a small feature
 
 6. *Always* review diffs before merging!

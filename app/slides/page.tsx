@@ -209,22 +209,22 @@ const SLIDE_NOTES: Record<number, SlideNotes> = {
       "2. Use short cut `plan-from-prd` and attach `audit-history-prd.md`",
       "3. Start the Plan Creation process",
       "4. Return to Audit History PRD to show it more in depth",
-      "5. Show the new `audit-history-implementation-plan.md` document",
+      "5. Show the new `audit-history-feature-plan.md` document",
     ],
   },
   14: {
     section: "Live Demo · Implement the Plan",
     lines: [
-      "# Implement Plan",
-      "1. Use short cut `implement plan` and attach `audit-history-implementation-plan.md`",
+      "# Execute Plan",
+      "1. Use short cut `execute plan` and attach `audit-history-feature-plan.md`",
       "2. Follow the prompts provided by the chat.",
-      "3. While the agent is implementing the plan, **NOW go back** to `audit-history-prd.md` and **give a deeper tour** of what the PRD looks like.",
+      "3. While the agent is executing the plan, **NOW go back** to `audit-history-prd.md` and **give a deeper tour** of what the PRD looks like.",
       "4. Return to the chat when first round of plan steps is completed",
       "5. Switch VS Code to **Source Control to view the file Diffs**",
       "6. Prompt the agent to continue to next plan section or batch of sections",
       "## Write Tests and Run Tests",
-      "- Implement Plan will likely have created and run some new tests during implementation",
-      "> *List and describe all tests available to us, and call out any new tests you created during this implementation.*",
+      "- Execute Plan will likely have created and run some new tests during execution",
+      "> *List and describe all tests available to us, and call out any new tests you created during this execution.*",
       " To run tests: `npm test`",
       "- If there is time, use `write-tests` and `run-tests` to identify, create, and run a couple of new tests",
       "## Demo New Audit History Feature",
@@ -241,7 +241,7 @@ const SLIDE_NOTES: Record<number, SlideNotes> = {
       "2) Start with one small, low-risk repo.",
       "3) Add a minimal AGENTS.md.",
       "4) Create 2–3 reusable prompt short cuts.",
-      "5) Try PRD → plan → implement workflow on a small feature.",
+      "5) Try PRD → plan → execute workflow on a small feature.",
       "6) *Always* review diffs before merging.",
     ],
   },
@@ -828,30 +828,30 @@ export default function SlidesPage() {
             <div className="slides-flow" aria-label="Demo steps">
               <div className="slides-step">
                 <div className="n">01</div>
-                <div className="t">New branch</div>
+                <div className="t">New Feature Branch</div>
                 <div className="d">
-                  Agent creates + switches to feature-audit-history
+                  Create or have agent create + switch to feature-audit-history branch
                 </div>
               </div>
               <div className="slides-step">
                 <div className="n">02</div>
-                <div className="t">plan from prd</div>
+                <div className="t">Generate Plan from PRD</div>
                 <div className="d">
-                  Attach Audit History PRD → agent generates the plan
+                  Attach Audit History PRD → Invoke `plan from prd` skill
                 </div>
               </div>
-              <div className="slides-step">
+              {/* <div className="slides-step">
                 <div className="n">03</div>
                 <div className="t">Review PRD</div>
                 <div className="d">
                   Deep tour of the Audit History PRD
                 </div>
-              </div>
+              </div> */}
               <div className="slides-step">
-                <div className="n">04</div>
-                <div className="t">Review plan</div>
+                <div className="n">03</div>
+                <div className="t">Review Plan</div>
                 <div className="d">
-                  Inspect the generated implementation plan
+                  Inspect the generated plan document
                 </div>
               </div>
             </div>
@@ -863,34 +863,34 @@ export default function SlidesPage() {
             data-title="Live Demo · Implement the Plan"
           >
             <div className="slides-eyebrow">Live Demo · Implement the Plan</div>
-            <h2>implement plan</h2>
+            <h2>execute plan</h2>
             <div className="slides-flow" aria-label="Demo steps">
               <div className="slides-step">
                 <div className="n">01</div>
-                <div className="t">implement plan</div>
+                <div className="t">Execute Plan</div>
                 <div className="d">
-                  Attach the plan → agent executes in sections
+                  Attach plan document → invoke `execute plan` skill
                 </div>
               </div>
               <div className="slides-step">
                 <div className="n">02</div>
-                <div className="t">Review diffs</div>
+                <div className="t">Tests</div>
                 <div className="d">
-                  Source Control → inspect every change before continuing
+                  Use Write Tests and Run Tests skills to validate behavior
                 </div>
               </div>
               <div className="slides-step">
                 <div className="n">03</div>
-                <div className="t">Tests</div>
+                <div className="t">Review Diffs</div>
                 <div className="d">
-                  write-tests + run-tests to validate behavior
+                  Source control → inspect every change before continuing
                 </div>
               </div>
               <div className="slides-step">
                 <div className="n">04</div>
-                <div className="t">Check out the New Feature</div>
+                <div className="t">Test Drive New Feature</div>
                 <div className="d">
-                  Show the live Audit History feature in the running app
+                  Audit History feature should now be executed
                 </div>
               </div>
             </div>
@@ -919,7 +919,7 @@ export default function SlidesPage() {
                   <span className="slides-highlight">AGENTS.md</span>
                 </li>
                 <li>Create 2–3 reusable shortcuts</li>
-                <li>Try PRD → plan → implement on a small feature</li>
+                <li>Try PRD → plan → execute on a small feature</li>
                 <li>
                   <strong>Always</strong> review diffs before merging
                 </li>

@@ -163,6 +163,6 @@ Next Steps: Fix error message consistency, then verify clipboard mock timing
 
 ## Integration with Other Skills
 
-- After **implement-plan**, use this skill to validate section completion
+- After **execute-plan**, use this skill to validate section completion
 - After **write-tests**, use this skill to verify new tests work correctly
 - Before **validate-completed-tasks**, run tests to provide evidence of correctness

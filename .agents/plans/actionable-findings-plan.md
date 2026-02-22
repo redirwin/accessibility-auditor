@@ -1,4 +1,4 @@
-# Actionable Findings Feature Implementation Plan
+# Actionable Findings Feature Implmentation Plan
 
 Source PRD: `02-PRDs/actionable-findings-feature-prd.md`
 

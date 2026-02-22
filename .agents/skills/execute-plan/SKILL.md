@@ -1,9 +1,9 @@
 ---
-name: implement-plan
-description: Execute an existing implementation plan with strict sequencing, supporting single-section and batched-section execution. Use when the user says "implement plan", references an implementation plan file, or asks to proceed through specific sections/ranges.
+name: execute-plan
+description: Execute an existing implementation plan with strict sequencing, supporting single-section and batched-section execution. Use when the user says "execute plan", references an implementation plan file, or asks to proceed through specific sections/ranges.
 ---
 
-# Implement Plan
+# Execute Plan
 
 ## Purpose
 
@@ -13,7 +13,7 @@ Implement work from an existing implementation plan in controlled increments, up
 
 Use this skill when:
 
-- The user says `implement plan`
+- The user says `execute plan`
 - The user asks to proceed through sections of an implementation plan
 - The prompt includes a plan file and asks for implementation execution
 
