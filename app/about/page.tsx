@@ -78,12 +78,20 @@ export default function AboutPage() {
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
-          <Link
-            href="/"
-            className="justify-self-end text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Home
-          </Link>
+          <div className="flex justify-end gap-4 justify-self-end">
+            <Link
+              href="/slides"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Slides
+            </Link>
+            <Link
+              href="/"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Home
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

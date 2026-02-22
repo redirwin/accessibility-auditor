@@ -1,27 +1,21 @@
-"use client"
+"use client";
 
-import { Suspense, useState, useMemo, useEffect } from "react"
-import { useSearchParams, useRouter } from "next/navigation"
-import { UrlAuditForm } from "@/components/url-audit-form"
+import { Suspense, useState, useMemo, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { UrlAuditForm } from "@/components/url-audit-form";
 import {
   StateSimulator,
   type AppState,
   type SimulatorState,
-} from "@/components/state-simulator"
-import { ResultsPanel } from "@/components/results-panel"
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
-import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
-import { MOCK_RESPONSE } from "@/lib/mock-data"
-import type { AuditResponse } from "@/src/audit/types"
-import Link from "next/link"
-import {
-  ScanEye,
-  AlertCircle,
-  X,
-  Loader2,
-  Globe,
-} from "lucide-react"
+} from "@/components/state-simulator";
+import { ResultsPanel } from "@/components/results-panel";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { MOCK_RESPONSE } from "@/lib/mock-data";
+import type { AuditResponse } from "@/src/audit/types";
+import Link from "next/link";
+import { ScanEye, AlertCircle, X, Loader2, Globe } from "lucide-react";
 
 type ApiErrorCode =
   | "VALIDATION_ERROR"
@@ -30,10 +24,10 @@ type ApiErrorCode =
   | "RESPONSE_TOO_LARGE"
   | "UPSTREAM_FETCH_FAILED"
   | "HTML_PARSE_FAILED"
-  | "INTERNAL_ERROR"
+  | "INTERNAL_ERROR";
 
 const DEFAULT_ERROR_MESSAGE =
-  "We couldn't complete the audit. Please check the URL and try again."
+  "We couldn't complete the audit. Please check the URL and try again.";
 
 const ERROR_MESSAGE_BY_CODE: Record<ApiErrorCode, string> = {
   VALIDATION_ERROR: "Please enter a valid public http/https URL.",
@@ -43,7 +37,7 @@ const ERROR_MESSAGE_BY_CODE: Record<ApiErrorCode, string> = {
   UPSTREAM_FETCH_FAILED: "We couldn't fetch that URL. Please try again.",
   HTML_PARSE_FAILED: "We couldn't process the page content from that URL.",
   INTERNAL_ERROR: "Unexpected server error while running the audit.",
-}
+};
 
 function extractErrorMessage(payload: unknown): string {
   if (
@@ -53,54 +47,54 @@ function extractErrorMessage(payload: unknown): string {
     typeof payload.error === "object" &&
     payload.error !== null
   ) {
-    const code = (payload.error as { code?: unknown }).code
+    const code = (payload.error as { code?: unknown }).code;
     if (typeof code === "string" && code in ERROR_MESSAGE_BY_CODE) {
-      return ERROR_MESSAGE_BY_CODE[code as ApiErrorCode]
+      return ERROR_MESSAGE_BY_CODE[code as ApiErrorCode];
     }
 
-    const message = (payload.error as { message?: unknown }).message
+    const message = (payload.error as { message?: unknown }).message;
     if (typeof message === "string" && message.trim()) {
-      return message
+      return message;
     }
   }
 
-  return DEFAULT_ERROR_MESSAGE
+  return DEFAULT_ERROR_MESSAGE;
 }
 
-const SIMULATE_VALUES: AppState[] = ["idle", "loading", "success", "error"]
+const SIMULATE_VALUES: AppState[] = ["idle", "loading", "success", "error"];
 
 function HomeContent() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const simulateParam = searchParams.get("simulate")
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const simulateParam = searchParams.get("simulate");
   const urlSimulate = useMemo(
     () =>
       SIMULATE_VALUES.includes(simulateParam as AppState)
         ? (simulateParam as AppState)
         : null,
-    [simulateParam]
-  )
-  const [simulatorState, setSimulatorState] = useState<SimulatorState>("auto")
+    [simulateParam],
+  );
+  const [simulatorState, setSimulatorState] = useState<SimulatorState>("auto");
 
-  const [appState, setAppState] = useState<AppState>("idle")
-  const [url, setUrl] = useState("")
-  const [errorDismissed, setErrorDismissed] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR_MESSAGE)
-  const [auditResult, setAuditResult] = useState<AuditResponse | null>(null)
-  const displayState: AppState = urlSimulate ?? appState
+  const [appState, setAppState] = useState<AppState>("idle");
+  const [url, setUrl] = useState("");
+  const [errorDismissed, setErrorDismissed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR_MESSAGE);
+  const [auditResult, setAuditResult] = useState<AuditResponse | null>(null);
+  const displayState: AppState = urlSimulate ?? appState;
 
   useEffect(() => {
-    setSimulatorState(urlSimulate ?? "auto")
-  }, [urlSimulate])
+    setSimulatorState(urlSimulate ?? "auto");
+  }, [urlSimulate]);
 
   const handleAudit = async () => {
     if (urlSimulate) {
-      setSimulatorState("auto")
-      router.replace("/")
+      setSimulatorState("auto");
+      router.replace("/");
     }
-    setAppState("loading")
-    setErrorDismissed(false)
-    setErrorMessage(DEFAULT_ERROR_MESSAGE)
+    setAppState("loading");
+    setErrorDismissed(false);
+    setErrorMessage(DEFAULT_ERROR_MESSAGE);
 
     try {
       const response = await fetch("/api/audit", {
@@ -109,47 +103,49 @@ function HomeContent() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ url }),
-      })
+      });
 
-      let payload: unknown = null
+      let payload: unknown = null;
       try {
-        payload = await response.json()
+        payload = await response.json();
       } catch {
-        payload = null
+        payload = null;
       }
 
       if (!response.ok) {
-        setErrorMessage(extractErrorMessage(payload))
-        setAuditResult(null)
-        setAppState("error")
-        return
+        setErrorMessage(extractErrorMessage(payload));
+        setAuditResult(null);
+        setAppState("error");
+        return;
       }
 
-      setAuditResult(payload as AuditResponse)
-      setAppState("success")
+      setAuditResult(payload as AuditResponse);
+      setAppState("success");
     } catch {
-      setErrorMessage("Network error while running the audit. Please try again.")
-      setAuditResult(null)
-      setAppState("error")
+      setErrorMessage(
+        "Network error while running the audit. Please try again.",
+      );
+      setAuditResult(null);
+      setAppState("error");
     }
-  }
+  };
 
   const handleReset = () => {
-    setUrl("")
-    setAppState("idle")
-    setErrorDismissed(false)
-    setErrorMessage(DEFAULT_ERROR_MESSAGE)
-    setAuditResult(null)
-  }
+    setUrl("");
+    setAppState("idle");
+    setErrorDismissed(false);
+    setErrorMessage(DEFAULT_ERROR_MESSAGE);
+    setAuditResult(null);
+  };
 
   const handleStateChange = (state: SimulatorState) => {
-    setSimulatorState(state)
+    setSimulatorState(state);
     if (state === "auto") {
-      router.push("/")
-      return
+      router.push("/");
+      return;
     }
-    router.push(`/?simulate=${state}`)
-  }
+    router.push(`/?simulate=${state}`);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -190,9 +186,7 @@ function HomeContent() {
             <Alert variant="destructive" className="relative">
               <AlertCircle className="size-4" />
               <AlertTitle>Audit failed</AlertTitle>
-              <AlertDescription>
-                {errorMessage}
-              </AlertDescription>
+              <AlertDescription>{errorMessage}</AlertDescription>
               <Button
                 variant="ghost"
                 size="sm"
@@ -209,7 +203,10 @@ function HomeContent() {
           {displayState === "success" && (
             <ResultsPanel
               data={
-                auditResult ?? { ...MOCK_RESPONSE, url: url || MOCK_RESPONSE.url }
+                auditResult ?? {
+                  ...MOCK_RESPONSE,
+                  url: url || MOCK_RESPONSE.url,
+                }
               }
             />
           )}
@@ -232,16 +229,24 @@ function HomeContent() {
               className="scale-90 origin-center border-none bg-transparent px-0 py-0 opacity-70"
             />
           </div>
-          <Link
-            href="/about"
-            className="justify-self-end text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            About
-          </Link>
+          <div className="flex justify-end gap-4 justify-self-end">
+            <Link
+              href="/slides"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Slides
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              About
+            </Link>
+          </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default function Home() {
@@ -249,7 +254,7 @@ export default function Home() {
     <Suspense fallback={<LoadingSkeleton />}>
       <HomeContent />
     </Suspense>
-  )
+  );
 }
 
 function LoadingSkeleton() {
@@ -282,7 +287,10 @@ function LoadingSkeleton() {
         <Skeleton className="h-5 w-16" />
         <div className="flex flex-col gap-2">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-lg border bg-card px-4 py-3">
+            <div
+              key={i}
+              className="flex items-center gap-3 rounded-lg border bg-card px-4 py-3"
+            >
               <Skeleton className="h-6 w-14 rounded-md" />
               <div className="flex flex-1 flex-col gap-1.5">
                 <Skeleton className="h-4 w-40" />
@@ -294,7 +302,7 @@ function LoadingSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function IdleState() {
@@ -312,5 +320,5 @@ function IdleState() {
         </p>
       </div>
     </div>
-  )
+  );
 }
