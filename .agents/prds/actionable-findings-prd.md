@@ -1,10 +1,9 @@
-## Feature PRD
+## Actionable Findings PRD
 
-**Feature:** Element Locators & HTML Snippets for Accessibility Findings
-**Product:** Accessibility URL Auditor (MVP)
-**Owner:** David
-**Version:** 1.0 (Feature Add-on)
-**Status:** Planned (post-MVP enhancement)
+**Product:** Accessibility Auditor
+**Scope:** Actionable Findings (element locators & HTML snippets; post-MVP enhancement)
+**Status:** Complete
+**Purpose:** Enhance failing or warning accessibility checks with stable element locators and trimmed HTML snippets so developers can locate and fix issues directly.
 
 ---
 

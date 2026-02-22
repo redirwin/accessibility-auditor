@@ -1,8 +1,7 @@
-## Audit History Feature PRD
+## Audit History PRD
 
 **Product:** Accessibility Auditor
-**Phase:** Post-MVP Feature
-**Owner:** David
+**Scope:** Audit History (post-MVP feature)
 **Status:** Planned
 **Purpose:** Add persistent audit history backed by SQLite, with a developer-friendly history UI and seamless re-run workflow.
 

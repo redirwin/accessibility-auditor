@@ -1,8 +1,9 @@
-## Accessibility URL Auditor — MVP PRD
+## MVP PRD
 
-**Product:** Accessibility URL Auditor (MVP)
-**Status:** UI complete via Vercel v0; implement real behavior
-**Primary Goal:** Wire the existing UI to a real accessibility audit engine with safe URL fetching and deterministic checks.
+**Product:** Accessibility Auditor
+**Scope:** MVP
+**Status:** Complete
+**Purpose:** Wire the existing UI to a real accessibility audit engine with safe URL fetching and deterministic checks.
 
 ---
 
