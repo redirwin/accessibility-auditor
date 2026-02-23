@@ -27,7 +27,7 @@
 
 > *Show me a list of all markdown files in this project with a brief description of each.* 
 
-> *Search the internet and summarize the general AGENTS.md specification (not the AGENTS.md file in this project) in less than 300 words with succinct bullet points.* 
+> *Visit this website and summarize the general AGENTS.md specification (not the AGENTS.md file in this project) in less than 300 words with succinct bullet points. attach: https://agents.md* 
 
 - Entering the internet search prompt in Ask mode should cause Co-Pilot to complain that it doesn't have the ability to search the internet.
 - Good opportunity to explain the different between **Ask mode vs Agent mode**. 
@@ -36,7 +36,7 @@
 
 ## Set to Agent Mode
 
-> *Search the internet and summarize the general AGENTS.md specification (not the AGENTS.md file in this project) in less than 300 words with succinct bullet points.* 
+> *Visit this website and summarize the general AGENTS.md specification (not the AGENTS.md file in this project) in less than 300 words with succinct bullet points. attach: https://agents.md* 
 
 - Open AGENTS.md
 - Show first as Markdown file, then switch to preview mode. 
