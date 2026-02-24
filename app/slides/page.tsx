@@ -585,9 +585,9 @@ export default function SlidesPage() {
           >
             <div className="slides-eyebrow">What We Need</div>
             <h2>
-              <span className="slides-highlight">Repeatable Control</span>
-              {" > "}
               <span style={{ textDecoration: "line-through" }}>Better Prompting</span>
+              {" < "}
+              <span className="slides-highlight">Repeatable Control</span>
             </h2>
             <div className="slides-repeatable-layout">
               <div className="slides-repeatable-copy">
