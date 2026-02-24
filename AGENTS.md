@@ -13,6 +13,7 @@ Use these **standalone** prompt short cuts anywhere in a prompt (before, after, 
 - **onboard** — "Familiarize yourself with the full project and codebase; then summarize the project in **300 words or less** and be ready to help with updates."
 - **nccp** — "No code changes, please; provide analysis, guidance, suggestions, or commands only and do not modify files."
 - **commit msg** — "Review work since the last commit and produce **one short, descriptive commit message** appropriate for the changes. **Do not run git or create a commit** — only display the suggested message for the user to use."
+- **100max** - "Respond in 100 words or less."
 - **plan from prd** — "Use the [plan-from-prd](.agents/skills/plan-from-prd/SKILL.md) skill to generate a comprehensive **step-by-step implementation plan** from the attached PRD. Save the plan in [.agents/plans](.agents/plans) with clear sections and **unchecked task boxes**; take no other actions."
 - **execute plan** — "Use the [execute-plan](.agents/skills/execute-plan/SKILL.md) skill to execute the referenced plan section(s), update checklist progress and section notes, and follow single/batch section rules."
 - **validate** — "Use the [validate-completed-tasks](.agents/skills/validate-completed-tasks/SKILL.md) skill to validate actions already taken and verify correctness/completeness against the PRD and/or plan."
